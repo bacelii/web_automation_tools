@@ -1,0 +1,11 @@
+The Document Object Model (DOM) is the tree of elements for an html file
+
+Element: they are containers that have an opening tag, content and then closing tag. 
+There can be different storage containers
+
+- <td>: defines cell of a table that has data
+- <tr>: table row
+
+
+Attributess (stored as key-value pairs in the start tag of elements):
+- class: can label multiple elements in html the same class so can be formatted by CSS or javascript
