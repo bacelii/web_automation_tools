@@ -40,7 +40,7 @@ to install without git application
 ::
 
 	cd web_automation_tools
-    pip install -e .
+    	pip install -e .
 
 
 Running
