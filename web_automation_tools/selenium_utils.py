@@ -89,4 +89,12 @@ def example_headless_driver(url = 'https://duckduckgo.com'):
     driver.close()
 
 
+def example_find_link_where_text_equal():
+    """
+    The A represents looking for a link tag
+    and the inside part specifies what we want the text equal to
+    """
+    driver.find_elements_by_xpath("//a[text()='Locations']")
+
+
 import selenium_utils

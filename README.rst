@@ -14,22 +14,34 @@ Process:
 
 1) Open Chrome Browser and click 3 dots in top right corner > Help > About Google Chrome (this will show what version of chrome you have and if version is up to date)
 
-2) Go to the following website and download the driver for your current chrome version
-    download: https://sites.google.com/a/chromium.org/chromedriver/downloads
+2) Go to the following website and download the driver for your current chrome version (do the latest stable version, currrently ChromeDriver 104.0.5112.79 at the top of the page)
+    download: https://sites.google.com/chromium.org/driver/
     
 3) Extract the files form the zip folder and Place in Downloads folder (or other known location)
 
 Installation
 ############
-To install the git version do
+To install using git applicatio (better if code updates pushed). From the command line (cmd), navigate to a folder where you want the code stored and type into command line the following:
 
 ::
 
     git clone https://github.com/brendanacelii/web_automation_tools.git
     cd web_automation_tools
     pip install -e .
+
     
-    
+to install without git application
+
+1) Navigate to https://github.com/brendanacelii/web_automation_tools.git
+2) Click on top right green button "Code" > Download Zip
+3) Rename the zip file web_automation_tools and extract files where you want the code stored
+4) in command line navigate to the inner web_automation_tools folder and type
+
+::
+
+	cd web_automation_tools
+    pip install -e .
+
 
 Running
 ############
@@ -69,7 +81,7 @@ Arguments
 	optional arguments:
 	  -h, --help            show this help message and exit
 	  -f EXPORT_FILEPATH, --export_filepath EXPORT_FILEPATH
-	                        csv filepath for the output of data (default: None)
+	                        csv filepath for the output of data (default: download.csv)
 	  -d DRIVER_EXE_PATH, --driver_exe_path DRIVER_EXE_PATH
 	                        path to where stored chrome driver exe (default: C:\Us
 	                        ers\celii\Downloads\chromedriver_win32\chromedriver.ex

@@ -77,7 +77,7 @@ from bs4 import BeautifulSoup
 
 
 #default_categories = ("Interstate","Other","Midstream")
-default_categories = "Other"
+default_categories = "Interstate"
 default_base_url = "https://pipeline2.kindermorgan.com/LocationDataDownload/LocDataDwnld.aspx?code=ARLS"
 default_category_class_name = "igdm_NautilusMenuItemHorizontalRootLink"
 
@@ -134,7 +134,8 @@ def fetch_download_links(
         a_links = cat.next_sibling.find_all("a")
 
         local_dicts = [dict(
-            download_link = f'{download_base}?{a["href"][a["href"].find(query_deliminiter)+1:].replace("TSP=","code=")}',
+            #download_link = f'{download_base}?{a["href"][a["href"].find(query_deliminiter)+1:]}',
+            download_link = a["href"],
             name = a.span.text,
             category = cat_name) for a in a_links]
 
@@ -169,17 +170,11 @@ default_driver_exe_path = str((download_path() / Path("chromedriver_win32/chrome
 default_retrieve_button_id = "WebSplitter1_tmpl1_ContentPlaceHolder1_HeaderBTN1_btnRetrieve"
 default_download_button_id = "WebSplitter1_tmpl1_ContentPlaceHolder1_HeaderBTN1_btnDownload"
 default_visible_browser = True
-default_append_source = False
+default_append_source = True
 default_retrieve_sleep_seconds = 2
 
 
 # In[8]:
-
-
-Path("./").exists()
-
-
-# In[9]:
 
 
 def download_data(
@@ -257,12 +252,21 @@ def download_data(
         
     all_link_dfs = []
     for data_dict in data_to_download:
-        data_link = data_dict["download_link"]
+        data_link_pre = data_dict["download_link"]
+    
+        # go to the downloads page
+        driver.get(data_link_pre)
+        data_link = driver.find_element_by_xpath("//a[text()='Locations']").get_attribute('href')
+        data_dict["download_link"] = data_link
+        
+        
+        driver.get(data_link)
+        
 
         if verbose:
             print(f"\n-- Working on downloading {data_dict['category']}:{data_dict['name']} from \n {data_dict['download_link']}")
 
-        driver.get(data_link)
+        
 
         elem = driver.find_element(By.ID,retrieve_button_id)
         elem.click()
@@ -307,10 +311,12 @@ def download_data(
 
     all_link_dfs = pd.concat(all_link_dfs)
     
+    driver.close()
+    
     return all_link_dfs
 
 
-# In[10]:
+# In[9]:
 
 
 default_export_filepath = "./download_data"
@@ -335,7 +341,7 @@ def export_data_df_to_csv(
     
 
 
-# In[11]:
+# In[10]:
 
 
 def data_fetch_pipeline(**kwargs):
@@ -344,13 +350,13 @@ def data_fetch_pipeline(**kwargs):
     export_data_df_to_csv(data_df,**kwargs)
 
 
-# In[12]:
+# In[11]:
 
 
 import argparse
 
 def parse_arguments():
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     
     #-- arguemtns for output
     parser.add_argument("-f","--export_filepath",default=None,
@@ -390,10 +396,12 @@ def parse_arguments():
     
     
     # to run in ipynb
-    #args = parser.parse_args("-f download.csv -d chromedriver_win32".split())
+    args = parser.parse_args("-f download.csv -d chromedriver_win32".split())
     
     # to run as script
-    args = parser.parse_args()
+    #args = parser.parse_args()
+    
+    #parser.print_help()
 
     
     return args
@@ -401,7 +409,7 @@ def parse_arguments():
     
 
 
-# In[13]:
+# In[12]:
 
 
 def main():
@@ -412,15 +420,9 @@ def main():
     
 
 
-# In[14]:
+# In[13]:
 
 
 if __name__ == '__main__':
     main()
-
-
-# In[ ]:
-
-
-
 
