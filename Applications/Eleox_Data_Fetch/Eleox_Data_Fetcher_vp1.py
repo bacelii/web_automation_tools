@@ -77,7 +77,7 @@ from bs4 import BeautifulSoup
 
 
 #default_categories = ("Interstate","Other","Midstream")
-default_categories = "Other"
+default_categories = "Interstate"
 default_base_url = "https://pipeline2.kindermorgan.com/LocationDataDownload/LocDataDwnld.aspx?code=ARLS"
 default_category_class_name = "igdm_NautilusMenuItemHorizontalRootLink"
 
@@ -134,7 +134,7 @@ def fetch_download_links(
         a_links = cat.next_sibling.find_all("a")
 
         local_dicts = [dict(
-            download_link = f'{download_base}?{a["href"][a["href"].find(query_deliminiter)+1:]}',
+            download_link = f'{download_base}?{a["href"][a["href"].find(query_deliminiter)+1:].replace("TSP=","code=")}',
             name = a.span.text,
             category = cat_name) for a in a_links]
 
@@ -176,6 +176,12 @@ default_retrieve_sleep_seconds = 2
 # In[8]:
 
 
+Path("./").exists()
+
+
+# In[9]:
+
+
 def download_data(
     data_to_download,
     driver_exe_path = None,
@@ -184,7 +190,7 @@ def download_data(
     visible_browser = None,
     append_source = None,
     retrieve_sleep_seconds = None,
-    ignore_empty_download = False,
+    ignore_empty_download = True,
     debug = False,
     verbose = True,
     **kwargs
@@ -221,6 +227,14 @@ def download_data(
     else:
         options = None
         
+    
+    if not Path(driver_exe_path).exists():
+        guess_path = Path(f"{driver_exe_path}")
+        if '.exe' not in driver_exe_path:
+            guess_path = guess_path / Path("chromedriver.exe")
+        driver_exe_path = str((download_path() / guess_path).absolute())
+        if verbose:
+            print(f"Inferred path to driver = {driver_exe_path}")
     
     curr_path = str(Path(driver_exe_path).absolute())
     if debug:
@@ -296,7 +310,7 @@ def download_data(
     return all_link_dfs
 
 
-# In[9]:
+# In[10]:
 
 
 default_export_filepath = "./download_data"
@@ -304,6 +318,7 @@ default_export_filepath = "./download_data"
 def export_data_df_to_csv(
     data_df,
     export_filepath=None,
+    verbose = True,
     **kwargs
     ):
     
@@ -314,23 +329,22 @@ def export_data_df_to_csv(
     export_path = export_path.parent / Path(f"{export_path.stem}.csv")
     data_df.to_csv(str(export_path.absolute()))
     
-    print(f"Export to {export_path}")
+    if verbose:
+        print(f"Exportted to {export_path}")
     return 
     
 
 
-# In[10]:
+# In[11]:
 
 
-def main(**kwargs):
-            
+def data_fetch_pipeline(**kwargs):
     data_links = fetch_download_links(**kwargs)
     data_df = download_data(data_links,**kwargs)
     export_data_df_to_csv(data_df,**kwargs)
-    
 
 
-# In[15]:
+# In[12]:
 
 
 import argparse
@@ -375,19 +389,34 @@ def parse_arguments():
                        dest = "categories")
     
     
+    # to run in ipynb
+    #args = parser.parse_args("-f download.csv -d chromedriver_win32".split())
+    
+    # to run as script
     args = parser.parse_args()
+
+    
     return args
     
     
 
 
-# In[ ]:
+# In[13]:
+
+
+def main():
+    arguments = parse_arguments()
+    print(f"arguments = {arguments}")
+    kwargs = vars(arguments)
+    data_fetch_pipeline(**kwargs)
+    
+
+
+# In[14]:
 
 
 if __name__ == '__main__':
-    arguments = parse_arguments()
-    print(f"arguments = {arguments}")
-    main(**vars(arguments))
+    main()
 
 
 # In[ ]:
