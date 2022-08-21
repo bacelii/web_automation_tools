@@ -12,8 +12,7 @@ script to use (placing in Downloads folder is assumed otherwise the path needs t
 
 Process:
 
-1) Open Chrome Browser and click 3 dots in top right corner > Help > About Google Chrome
---> this will show what version of chrome you have and if version is up to date
+1) Open Chrome Browser and click 3 dots in top right corner > Help > About Google Chrome (this will show what version of chrome you have and if version is up to date)
 
 2) Go to the following website and download the driver for your current chrome version
     download: https://sites.google.com/a/chromium.org/chromedriver/downloads
@@ -25,6 +24,7 @@ Installation
 To install the git version do
 
 ::
+
     git clone https://github.com/brendanacelii/web_automation_tools.git
     cd web_automation_tools
     pip install -e .
