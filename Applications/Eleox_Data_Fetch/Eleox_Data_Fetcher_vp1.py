@@ -77,7 +77,7 @@ from bs4 import BeautifulSoup
 
 
 #default_categories = ("Interstate","Other","Midstream")
-default_categories = "Interstate"
+default_categories = "Other"
 default_base_url = "https://pipeline2.kindermorgan.com/LocationDataDownload/LocDataDwnld.aspx?code=ARLS"
 default_category_class_name = "igdm_NautilusMenuItemHorizontalRootLink"
 
@@ -169,7 +169,7 @@ default_driver_exe_path = str((download_path() / Path("chromedriver_win32/chrome
 default_retrieve_button_id = "WebSplitter1_tmpl1_ContentPlaceHolder1_HeaderBTN1_btnRetrieve"
 default_download_button_id = "WebSplitter1_tmpl1_ContentPlaceHolder1_HeaderBTN1_btnDownload"
 default_visible_browser = True
-default_append_source = True
+default_append_source = False
 default_retrieve_sleep_seconds = 2
 
 

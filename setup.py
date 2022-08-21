@@ -6,7 +6,7 @@ setup(
    description='Usefule Module for Web Scraping and Automation',
    author='Brendan Celii',
    author_email='bac8@rice.edu',
-   packages=find_packages(["web_automation_tools","web_automation_tools.*"]),  #teslls what packages to be included for the install
+   packages=find_packages(),  #teslls what packages to be included for the install
    install_requires=[
        'pathlib', 
        'beautifulsoup4', 

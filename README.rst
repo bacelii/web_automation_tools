@@ -59,36 +59,55 @@ Arguments
 
 ::
 
-    optional arguments:
-    -h, --help            show this help message and exit
-    -f EXPORT_FILEPATH, --export_filepath EXPORT_FILEPATH
-                        csv filepath for the output of data
-    -d DRIVER_EXE_PATH, --driver_exe_path DRIVER_EXE_PATH
-                        path to where stored chrome driver exe
-    -ret RETRIEVE_BUTTON_ID, --retrieve_button_id RETRIEVE_BUTTON_ID
-                        the id of the retrieve button in the html source
-    -down DOWNLOAD_BUTTON_ID, --download_button_id DOWNLOAD_BUTTON_ID
-                        the id of the download button in the html source
-    -v VISIBLE_BROWSER, --visible_browser VISIBLE_BROWSER
-                        whether a browser window should pop up and perform the
-                        scripted actions. Set to False for headerless
-    -a APPEND_SOURCE, --append_source APPEND_SOURCE
-                        whether the url and the pipeline name should be
-                        appended to the entries to show where entry was
-                        fetched from
-    -s RETRIEVE_SLEEP_SECONDS, --retrieve_sleep_seconds RETRIEVE_SLEEP_SECONDS
-                        how long the program will sleep after activating the
-                        retrieve button (to help if takes long time to buffer)
-    -b BASE_URL, --base_url BASE_URL
-                        what webpage to start from
-    -cat_n CATEGORY_CLASS_NAME, --category_class_name CATEGORY_CLASS_NAME
-                        the class name from the html source to which signal
-                        which tags to search for in finding categories
-    -cat CATEGORIES [CATEGORIES ...], --categories CATEGORIES [CATEGORIES ...]
-                        the pipelines to pull data from (listed in the
-                        dropdown tabs of webpage). Currently only supports one
-                        pipeline input specified with str
-    
+	usage: ipykernel_launcher.py [-h] [-f EXPORT_FILEPATH] [-d DRIVER_EXE_PATH]
+	                             [-ret RETRIEVE_BUTTON_ID]
+	                             [-down DOWNLOAD_BUTTON_ID] [-v VISIBLE_BROWSER]
+	                             [-a APPEND_SOURCE] [-s RETRIEVE_SLEEP_SECONDS]
+	                             [-b BASE_URL] [-cat_n CATEGORY_CLASS_NAME]
+	                             [-cat CATEGORIES [CATEGORIES ...]]
+
+	optional arguments:
+	  -h, --help            show this help message and exit
+	  -f EXPORT_FILEPATH, --export_filepath EXPORT_FILEPATH
+	                        csv filepath for the output of data (default: None)
+	  -d DRIVER_EXE_PATH, --driver_exe_path DRIVER_EXE_PATH
+	                        path to where stored chrome driver exe (default: C:\Us
+	                        ers\celii\Downloads\chromedriver_win32\chromedriver.ex
+	                        e)
+	  -ret RETRIEVE_BUTTON_ID, --retrieve_button_id RETRIEVE_BUTTON_ID
+	                        the id of the retrieve button in the html source
+	                        (default: WebSplitter1_tmpl1_ContentPlaceHolder1_Heade
+	                        rBTN1_btnRetrieve)
+	  -down DOWNLOAD_BUTTON_ID, --download_button_id DOWNLOAD_BUTTON_ID
+	                        the id of the download button in the html source
+	                        (default: WebSplitter1_tmpl1_ContentPlaceHolder1_Heade
+	                        rBTN1_btnDownload)
+	  -v VISIBLE_BROWSER, --visible_browser VISIBLE_BROWSER
+	                        whether a browser window should pop up and perform the
+	                        scripted actions. Set to False for headerless
+	                        (default: True)
+	  -a APPEND_SOURCE, --append_source APPEND_SOURCE
+	                        whether the url and the pipeline name should be
+	                        appended to the entries to show where entry was
+	                        fetched from (default: True)
+	  -s RETRIEVE_SLEEP_SECONDS, --retrieve_sleep_seconds RETRIEVE_SLEEP_SECONDS
+	                        how long the program will sleep after activating the
+	                        retrieve button (to help if takes long time to buffer)
+	                        (default: 2)
+	  -b BASE_URL, --base_url BASE_URL
+	                        what webpage to start from (default: https://pipeline2
+	                        .kindermorgan.com/LocationDataDownload/LocDataDwnld.as
+	                        px?code=ARLS)
+	  -cat_n CATEGORY_CLASS_NAME, --category_class_name CATEGORY_CLASS_NAME
+	                        the class name from the html source to which signal
+	                        which tags to search for in finding categories
+	                        (default: igdm_NautilusMenuItemHorizontalRootLink)
+	  -cat CATEGORIES [CATEGORIES ...], --categories CATEGORIES [CATEGORIES ...]
+	                        the pipelines to pull data from (listed in the
+	                        dropdown tabs of webpage). Currently only supports one
+	                        pipeline input specified with str (default:
+	                        Interstate)
+	    
 Examples: 
 
 ::
