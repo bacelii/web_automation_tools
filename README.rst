@@ -49,6 +49,9 @@ The pipeline application can be used in different ways and can be located in web
 
 
 3) the data_fetch_pipeline() function and all helper functions copied into another repo/code and arguments sent through function
+::
+
+    data_fetch_pipeline(**kwargs)
 
 
 Arguments
