@@ -1,5 +1,5 @@
 
-web_autoation_tools
+web_automation_tools
 #########
 tools for helping with web scrapping and web automation using tools like BeautifulSoup and Selenium
 
