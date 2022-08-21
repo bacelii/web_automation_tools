@@ -25,9 +25,9 @@ Installation
 To install the git version do
 
 ::
-    git clone https://github.com/sdorkenw/MeshParty.git
-    cd MeshParty
-    pip install . -e --upgrade
+    git clone https://github.com/brendanacelii/web_automation_tools.git
+    cd web_automation_tools
+    pip install -e .
     
     
 
@@ -89,6 +89,7 @@ Arguments
 Examples: 
 
 ::
+
     # if the chrome driver exe is in your downloads folder in a folder called chromedriver_win32
     pipeline_download -f download.csv -d chromedriver_win32
     
