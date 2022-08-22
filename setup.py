@@ -10,7 +10,7 @@ setup(
    install_requires=[
        'pathlib', 
        'beautifulsoup4', 
-       'selenium',
+       'selenium<4.3',
        'pandas',
        'requests',
        'argparse',
