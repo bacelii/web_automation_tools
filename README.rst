@@ -25,14 +25,14 @@ To install using git applicatio (better if code updates pushed). From the comman
 
 ::
 
-    git clone https://github.com/brendanacelii/web_automation_tools.git
+    git clone https://github.com/bacelii/web_automation_tools.git
     cd web_automation_tools
     pip install -e .
 
     
 to install without git application
 
-1) Navigate to https://github.com/brendanacelii/web_automation_tools.git
+1) Navigate to https://github.com/bacelii/web_automation_tools.git
 2) Click on top right green button "Code" > Download Zip
 3) Rename the zip file web_automation_tools and extract files where you want the code stored
 4) in command line navigate to the inner web_automation_tools folder and type
